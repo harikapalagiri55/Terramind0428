@@ -77,10 +77,14 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: err.message || 'Internal Server Error' });
 });
 
-app.listen(PORT, () => {
-  console.log(`\n======================================================`);
-  console.log(`🛡️  CYBERSHIELD ENTERPRISE SOC BACKEND ONLINE`);
-  console.log(`📡 Listening on http://localhost:${PORT}`);
-  console.log(`🔒 SQLite Database Engine: Node 24 native node:sqlite`);
-  console.log(`======================================================\n`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`\n======================================================`);
+    console.log(`🛡️  CYBERSHIELD ENTERPRISE SOC BACKEND ONLINE`);
+    console.log(`📡 Listening on http://localhost:${PORT}`);
+    console.log(`🔒 SQLite Database Engine: Node 24 native node:sqlite`);
+    console.log(`======================================================\n`);
+  });
+}
+
+module.exports = app;

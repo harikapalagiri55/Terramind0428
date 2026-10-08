@@ -1,12 +1,31 @@
 const { DatabaseSync } = require('node:sqlite');
 const path = require('path');
 const fs = require('fs');
+const os = require('os');
 
-const dbPath = path.join(__dirname, 'cybershield.db');
+const isVercel = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+let dbPath = path.join(__dirname, 'cybershield.db');
+
+if (isVercel) {
+  const tmpDbPath = path.join(os.tmpdir(), 'cybershield.db');
+  if (!fs.existsSync(tmpDbPath) && fs.existsSync(dbPath)) {
+    try {
+      fs.copyFileSync(dbPath, tmpDbPath);
+    } catch (err) {
+      console.warn('Could not copy db to /tmp, will initialize fresh:', err);
+    }
+  }
+  dbPath = tmpDbPath;
+}
+
 const db = new DatabaseSync(dbPath);
 
-// Enable WAL mode and foreign keys for durability and performance
-db.exec('PRAGMA journal_mode = WAL;');
+// Enable WAL mode or DELETE mode fallback
+try {
+  db.exec('PRAGMA journal_mode = WAL;');
+} catch {
+  try { db.exec('PRAGMA journal_mode = DELETE;'); } catch (_) {}
+}
 db.exec('PRAGMA foreign_keys = ON;');
 
 // Initialize Schema
@@ -180,6 +199,17 @@ function initSchema() {
 }
 
 initSchema();
+
+// Auto-seed if database is fresh
+try {
+  const userCount = db.prepare('SELECT COUNT(*) as count FROM users').get().count;
+  if (userCount === 0) {
+    const { seedDatabase } = require('./seed');
+    seedDatabase();
+  }
+} catch (err) {
+  console.warn('Auto-seed check notice:', err.message);
+}
 
 module.exports = {
   db,
