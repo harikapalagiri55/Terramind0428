@@ -1,0 +1,416 @@
+Build a production-quality full-stack web application called **CyberShield — Adaptive Enterprise Phishing Defense & Human Risk Training Platform**.
+
+### OBJECTIVE
+
+Create a working enterprise cybersecurity awareness platform that allows security officers to safely simulate role-based spear-phishing campaigns, measure employee behavior, calculate human vulnerability, and automatically assign targeted micro-training when an employee fails a simulation.
+
+This must be a **fully functional software product**, not a static UI/demo mockup.
+
+
+The application MUST support this complete live flow:
+
+**Admin creates campaign → selects employee role → launches simulated phishing attack → employee opens employee portal → clicks simulated phishing link → backend immediately records the interaction in the live database → employee risk score increases → account changes to "Remediation Required" → personalized micro-training is automatically assigned → Admin dashboard updates with the new event.**
+
+Every state change must persist after page refresh.
+
+---
+
+## 1. SECURITY OFFICER / ADMIN CONSOLE
+
+Create a professional SOC-style dashboard containing:
+
+* Organization security score
+* Human Vulnerability Index
+* Active campaigns
+* Total employees tested
+* Phishing click rate
+* Phishing report rate
+* Employees requiring remediation
+* Recent security events
+* Department/role risk comparison
+* Campaign performance history
+
+Allow admins to:
+
+* Create campaigns
+* Select target department
+* Select employee role
+* Select employees
+* Choose attack scenario
+* Preview phishing simulation
+* Launch/pause/end campaign
+* View campaign results
+* View individual employee risk
+* Assign/reassign training
+* View remediation progress
+
+Include filters for:
+
+* Department
+* Role
+* Risk level
+* Campaign
+* Date
+* Remediation status
+
+---
+
+## 2. ROLE-BASED PHISHING TEMPLATE SYNTHESIZER
+
+Create a safe dynamic template generator.
+
+Templates must change according to the selected role.
+
+Examples:
+
+**Payroll**
+
+* Salary statement
+* Payroll update
+* Tax document
+
+**Developer**
+
+* Git repository security alert
+* CI/CD notification
+* Dependency vulnerability alert
+
+**Finance**
+
+* Invoice verification
+* Payment approval
+* Vendor update
+
+**HR**
+
+* Employee document
+* Benefits update
+* Recruitment notification
+
+The generated content must be clearly treated internally as a **simulation**.
+
+Do NOT collect real passwords, credentials, banking information, tokens, or sensitive employee data.
+
+---
+
+## 3. EMPLOYEE SIMULATION PORTAL
+
+Create a realistic employee-facing portal.
+
+Employees should see simulated campaign messages assigned to them.
+
+When an employee clicks the simulated phishing link:
+
+1. Record the event.
+2. Record timestamp.
+3. Record campaign ID.
+4. Record employee ID.
+5. Record role/department.
+6. Record interaction type.
+7. Increase risk score.
+8. Change remediation status.
+9. Automatically assign appropriate training.
+10. Display an educational phishing-awareness page.
+
+The simulation must never capture real credentials.
+
+---
+
+## 4. INTERACTION TELEMETRY
+
+Track safe behavioral events:
+
+* Email delivered
+* Email opened
+* Link clicked
+* Simulation reported
+* Training opened
+* Training completed
+
+Create an event timeline for every employee.
+
+Example:
+
+```text
+09:42 Campaign Delivered
+09:45 Email Opened
+09:46 Simulation Link Clicked
+09:46 Risk Score Updated
+09:46 Remediation Assigned
+09:47 Training Started
+```
+
+Use a real backend/database so these events persist.
+
+---
+
+## 5. HUMAN VULNERABILITY INDEX
+
+Implement an explainable scoring system.
+
+Calculate employee and organizational risk using measurable behavioral factors such as:
+
+* Phishing link clicks
+* Failure rate
+* Reporting behavior
+* Previous simulation results
+* Training completion
+* Recent improvement
+
+Display:
+
+* Score: 0–100
+* Low Risk
+* Medium Risk
+* High Risk
+* Critical Risk
+
+Clearly show **why the score changed**.
+
+Example:
+
+> Risk increased from 42 → 68 because the employee clicked a simulated phishing link.
+
+Do not use an unexplained black-box score.
+
+---
+
+## 6. AUTOMATED MICRO-TRAINING
+
+When an employee fails a simulation, automatically assign a short interactive training module.
+
+Examples:
+
+**Clicked Payroll Simulation**
+→ "How to Detect Payroll Phishing"
+
+**Clicked Developer Simulation**
+→ "Recognizing Fake Git/GitHub Security Alerts"
+
+Training should contain:
+
+* Short explanation
+* Example phishing indicators
+* Interactive questions
+* Immediate feedback
+* Completion status
+* Final score
+
+After completion:
+
+**Remediation Required → Training Completed → Risk Reduced / Improved**
+
+Persist all changes.
+
+---
+
+## 7. ANALYTICS
+
+Create visually strong security analytics:
+
+* Human Vulnerability Index
+* Department risk
+* Role-based risk
+* Campaign click rate
+* Reporting rate
+* Training completion
+* Risk trend over time
+* Top phishing scenarios
+* Before/after training comparison
+
+Use charts, tables, risk badges and clear visual hierarchy.
+
+---
+
+## 8. LIVE DATABASE
+
+Use a real persistent database.
+
+Recommended architecture:
+
+**Frontend**
+
+* React
+* TypeScript
+* Tailwind CSS
+
+**Backend**
+
+* Node.js
+* Express
+
+**Database**
+
+* PostgreSQL / Supabase
+
+Create proper relational entities for:
+
+* users
+* employees
+* departments
+* campaigns
+* phishing_templates
+* campaign_targets
+* interaction_events
+* risk_scores
+* training_modules
+* training_assignments
+* training_progress
+
+All important frontend actions must call backend APIs and persist to the database.
+
+---
+
+## 9. SECURITY REQUIREMENTS
+
+Follow secure application practices:
+
+* Never expose API keys or database credentials in frontend code.
+* Store secrets in environment variables.
+* Validate all backend inputs.
+* Use proper authentication and authorization.
+* Separate Admin and Employee permissions.
+* Prevent employees from accessing admin APIs.
+* Do not store real passwords from phishing simulations.
+* Use safe mock data.
+* Protect API endpoints.
+* Do not place secrets in client bundles.
+
+---
+
+## 10. UX / UI DESIGN
+
+Create a premium cybersecurity/SOC interface.
+
+Design direction:
+
+* Professional enterprise security dashboard
+* Modern dark/light mode
+* Clear risk indicators
+* Responsive design
+* Desktop and mobile support
+* Smooth but minimal animations
+* Accessible typography
+* Consistent cards, tables and charts
+* Professional cybersecurity visual language
+
+Main navigation:
+
+**Dashboard**
+**Campaigns**
+**Employees**
+**Templates**
+**Risk Analytics**
+**Training**
+**Events**
+**Reports**
+**Settings**
+
+Employee navigation:
+
+**My Simulations**
+**Security Score**
+**Training**
+**History**
+
+---
+
+## 11. DEMO DATA
+
+Include realistic seeded demo data so the application looks functional immediately.
+
+Create:
+
+* Multiple departments
+* Payroll employees
+* Developers
+* Finance employees
+* HR employees
+* Several campaigns
+* Different risk levels
+* Historical simulation events
+* Training assignments
+* Completed and pending remediation
+
+Clearly label demo data where appropriate.
+
+---
+
+## 12. REPORTING
+
+Allow administrators to generate a campaign report containing:
+
+* Campaign name
+* Target department
+* Employees targeted
+* Emails opened
+* Links clicked
+* Reports submitted
+* Failure rate
+* Vulnerability score
+* Training completion
+* Risk improvement
+
+Include an option to export the report.
+
+---
+
+## 13. MOST IMPORTANT: WORKING VERIFICATION
+
+Prioritize functionality over decorative features.
+
+The following must work in the final application:
+
+**ADMIN**
+Create Campaign → Select Role → Launch Campaign
+
+**EMPLOYEE**
+Open Simulation → Click Simulated Link
+
+**BACKEND**
+Create Interaction Event → Update Risk → Create Training Assignment → Update Remediation Status
+
+**ADMIN**
+Refresh Dashboard → Immediately see updated results
+
+The complete flow must work using the real database and APIs.
+
+---
+
+## 14. CODE QUALITY
+
+Keep the implementation understandable and explainable.
+
+Use:
+
+* Clean component structure
+* Reusable components
+* Clear API routes
+* Meaningful variable names
+* Proper error handling
+* Loading states
+* Empty states
+* Form validation
+* Comments only where useful
+* No unnecessary complexity
+
+Provide a README explaining:
+
+* Architecture
+* Database schema
+* API endpoints
+* Risk calculation logic
+* Security controls
+* Setup instructions
+* Demo credentials
+* 3-minute verification procedure
+
+### FINAL PRIORITY
+
+Do NOT build only a frontend mockup.
+
+The highest priority is:
+
+**REAL INTERACTION → REAL BACKEND EVENT → REAL DATABASE PERSISTENCE → REAL RISK UPDATE → REAL AUTOMATED TRAINING → REAL DASHBOARD UPDATE.**
+
+Make CyberShield feel like a deployable enterprise cybersecurity product while keeping all phishing activities strictly simulated and safe.
