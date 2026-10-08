@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server/index.js",
     "seed": "node server/seed.js",
-    "build": "npm install --prefix client && npm run build --prefix client",
+    "build": "npm install --prefix client && npm run build --prefix client && node copy-dist.js",
     "test:flow": "node verify-full-flow.js"
   },
   "engines": {
